@@ -1,3 +1,6 @@
 class Task < ActiveRecord::Base
-  validates :name, presence: true, length: { minimum: 2 }
+  belongs_to :habit
+
+  validates_presence_of :habit_id
+  validates_presence_of :task_date
 end

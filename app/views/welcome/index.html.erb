@@ -1,2 +1,65 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+
+<% if current_user.present? %>
+  <h1> Welcome back <%= current_user.name %> </h1>
+
+  ----------------------------------------------------
+  <br>
+  Did you complete Today's Habits?
+  <br>
+  ----------------------------------------------------
+  <br>
+
+  <p>Habits to Complete </p>
+  <% current_user.active_habits.each do |habit| %>
+    <p> <%= habit.name  %> <%= habit.task_for_today.id  %>
+    <%= habit.task_for_today.completed  %><p>
+  <% end %>
+
+  ----------------------------------------------------
+  <br>
+  DashBoard!
+  <br>
+  ----------------------------------------------------
+  <br>
+  <p>Completed days <%= current_user.habits.first.completed_days %> / 30</p>
+  <p> Longest running streak: <%= current_user.habits.first.longest_running_streak %></p>
+  <br>
+
+  ----------------------------------------------------------------------------------------------------
+
+  <br>
+    Calendar
+  <br>
+
+  ----------------------------------------------------------------------------------------------------
+
+  <br>
+
+  <h2> <%= current_user.name %>'s Habits </h2>
+  <table>
+    <tr>
+      <th> Name </th>
+      <th> Description </th>
+      <th> Start Date </th>
+      <th> End Date </th>
+      <th> </th>
+    </tr>
+    <% current_user.active_habits.each do |habit| %>
+      <tr>
+        <td> <%= habit.name %> </td>
+        <td> <%= habit.description %> </td>
+        <td> <%= habit.start_date %> </td>
+        <td> <%= habit.end_date %> </td>
+        <td> <%= link_to "Destroy", habit_path(habit.id), method: :delete %> </td>
+      </tr>
+    <% end %>
+  </table>
+
+<% else %>
+  <h1>Trickle</h1>
+  <p>A fun app to encourage you to build good habits!</p>
+  <p>Feel free to sign up to get started! </p>
+  <p>Or Login to get back to building great habits! </p>
+  <%= link_to "Login", logout_path %>
+  <%= link_to "Signup", '/signup' %>
+<% end %>

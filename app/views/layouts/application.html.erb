@@ -8,6 +8,16 @@
 </head>
 <body>
 
+    <%= link_to("Home", "/welcome/index", class: "navbar-brand") %>
+  <% if current_user %>
+    <%= link_to("Signed in as #{current_user.name}", user_path(current_user), class: "navbar-brand") %>
+    <%= link_to "Logout", '/logout' %>
+
+    <a href="/habits/new" class="btn btn-primary" role="button">Create a new Habit!</a>
+  <% else %>
+    <%= link_to "Login", logout_path %>
+    <%= link_to "Signup", '/signup' %>
+  <% end %>
 <%= yield %>
 
 </body>

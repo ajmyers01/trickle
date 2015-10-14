@@ -35,7 +35,7 @@ This app was inspired by this [blog post.](http://randsinrepose.com/archives/the
 > End Date ( 30 days from today )
 > Icon
 
-#### Trickle
+#### Tasks
 > Habit Id
 > Completed? 
 > Date

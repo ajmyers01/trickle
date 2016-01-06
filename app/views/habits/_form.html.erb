@@ -14,24 +14,42 @@
      </div>
    <% end %>
 
-   <p>
-     <%= f.label :name %><br>
-     <%= f.text_field :name %>
-   </p>
+   <form class="form-horizontal">
+     <fieldset>
 
-   <p>
-     <%= f.label :description %><br>
-     <%= f.text_field :description %>
-   </p>
+     <!-- Form Name -->
+     <legend>New Habit</legend>
 
-   <p hidden>
-   <%= f.date_field :start_date, value: Date.today %>
-   <%= f.date_field :end_date, value: (Date.today + 30.days) %>
-   <%= f.number_field :user_id, value: current_user.id %>
-   </p>
+     <!-- Text input-->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.text_field :name,  :class =>"form-control input-md", :placeholder => "Habit Name" %>
+       </div>
+     </div>
 
-   <p>
-     <%= f.submit %>
-   </p>
+     <br>
+     <!-- Text input-->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.text_field :description,  :class =>"form-control input-md", :placeholder => "Description" %>
+       </div>
+     </div>
+
+     <p hidden>
+     <%= f.date_field :start_date, value: Date.today %>
+     <%= f.date_field :end_date, value: (Date.today + 30.days) %>
+     <%= f.number_field :user_id, value: current_user.id %>
+     </p>
+
+     <br>
+     <!-- Button -->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.submit %>
+       </div>
+     </div>
+
+     </fieldset>
+    </form>
 
 <% end %>

@@ -18,10 +18,14 @@ class Habit < ActiveRecord::Base
     tasks.where(completed: false, task_date: Date.today).first
   end
 
+  def create_task_for_habit
+    puts "successful run of scheduler"
+
+  end
+
   def longest_running_streak
 
     #TODO
     #figure out how to do this.
-    "Todo"
   end
 end

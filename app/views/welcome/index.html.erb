@@ -1,65 +1,103 @@
 
 <% if current_user.present? %>
-  <h1> Welcome back <%= current_user.name %> </h1>
+<section id="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h1> Welcome back <%= current_user.name %> </h1>
+            </div>
+          </div>
+        </section>
 
-  ----------------------------------------------------
-  <br>
-  Did you complete Today's Habits?
-  <br>
-  ----------------------------------------------------
-  <br>
+        <br>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3>Did you complete Today's Habits?</h3>
+            </div>
+          </div>
+        </section>
 
-  <p>Habits to Complete </p>
-  <% current_user.active_habits.each do |habit| %>
-    <p> <%= habit.name  %> <%= habit.task_for_today.id  %>
-    <%= habit.task_for_today.completed  %><p>
-  <% end %>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3>DashBoard! </h3>
+              <p>Completed days <%= current_user.try(:habits).try(:first).try(:completed_days) %> / 30</p>
+              <p> Longest running streak: <%= current_user.try(:habits).try(:first).try(:longest_running_streak) %></p>
+            </div>
+          </div>
+        </section>
 
-  ----------------------------------------------------
-  <br>
-  DashBoard!
-  <br>
-  ----------------------------------------------------
-  <br>
-  <p>Completed days <%= current_user.habits.first.completed_days %> / 30</p>
-  <p> Longest running streak: <%= current_user.habits.first.longest_running_streak %></p>
-  <br>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3>Habits being worked on: </h3>
+              <% current_user.active_habits.each do |habit| %>
+                <p> <%= habit.name  %> <%= habit.task_for_today.try(:id)  %>
+                <%= habit.task_for_today.try(:completed)  %><p>
+              <% end %>
 
-  ----------------------------------------------------------------------------------------------------
+            </div>
+          </div>
+        </section>
 
-  <br>
-    Calendar
-  <br>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3>Calendar </h3>
+            </div>
+          </div>
+        </section>
 
-  ----------------------------------------------------------------------------------------------------
-
-  <br>
-
-  <h2> <%= current_user.name %>'s Habits </h2>
-  <table>
-    <tr>
-      <th> Name </th>
-      <th> Description </th>
-      <th> Start Date </th>
-      <th> End Date </th>
-      <th> </th>
-    </tr>
-    <% current_user.active_habits.each do |habit| %>
-      <tr>
-        <td> <%= habit.name %> </td>
-        <td> <%= habit.description %> </td>
-        <td> <%= habit.start_date %> </td>
-        <td> <%= habit.end_date %> </td>
-        <td> <%= link_to "Destroy", habit_path(habit.id), method: :delete %> </td>
-      </tr>
-    <% end %>
-  </table>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron text-center">
+              <h2> <%= current_user.name %>'s Habits </h2>
+              <% if current_user.active_habits.present? %>
+                <table>
+                  <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Start Date </th>
+                    <th> End Date </th>
+                    <th> </th>
+                  </tr>
+                  <% current_user.active_habits.each do |habit| %>
+                    <tr>
+                      <td> <%= habit.name %> </td>
+                      <td> <%= habit.description %> </td>
+                      <td> <%= habit.start_date %> </td>
+                      <td> <%= habit.end_date %> </td>
+                      <td> <%= link_to "Destroy", habit_path(habit.id), method: :delete %> </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                <p> No habits present! </p>
+                <p><a href="/habits/new" class="btn btn-primary">Create a new Habit Now!</a></li>
+              <% end %>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
 
 <% else %>
-  <h1>Trickle</h1>
-  <p>A fun app to encourage you to build good habits!</p>
-  <p>Feel free to sign up to get started! </p>
-  <p>Or Login to get back to building great habits! </p>
-  <%= link_to "Login", logout_path %>
-  <%= link_to "Signup", '/signup' %>
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h1>Welcome To Trickle!</h1>
+      <p>A fun app to encourage you to build good habits!</p>
+      <p>Feel free to sign up to get started! </p>
+      <p>Or Login to get back to building great habits! </p>
+      <p>
+        <%= link_to "Login", logout_path, class: "btn btn-primary btn-lg" %>
+        <%= link_to "Signup", '/signup', class: "btn btn-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
 <% end %>

@@ -15,13 +15,13 @@
    <% end %>
 
    <p>
-     <%= f.label :name %><br>
-     <%= f.text_field :name %>
+     <%= f.label :Completed? %><br>
+     <%= f.check_box :completed %>
    </p>
 
-   <p>
-     <%= f.label :description %><br>
-     <%= f.text_field :description %>
+   <p hidden>
+     <%= f.hidden_field :habit_id, value: @task.habit_id%>
+     <%= f.date_field :task_date, value: Date.today %>
    </p>
 
    <p>

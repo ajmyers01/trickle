@@ -1,0 +1,55 @@
+<%= form_for @habit do |f| %>
+
+  <% if @habit.errors.any? %>
+     <div id="error_explanation">
+       <h2>
+         <%= pluralize(@habit.errors.count, "error") %> prohibited
+         this habit from being saved:
+       </h2>
+       <ul>
+         <% @habit.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+   <% end %>
+
+   <form class="form-horizontal">
+     <fieldset>
+
+     <!-- Form Name -->
+     <legend>New Habit</legend>
+
+     <!-- Text input-->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.text_field :name,  :class =>"form-control input-md", :placeholder => "Habit Name" %>
+       </div>
+     </div>
+
+     <br>
+     <!-- Text input-->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.text_field :description,  :class =>"form-control input-md", :placeholder => "Description" %>
+       </div>
+     </div>
+
+     <p hidden>
+     <%= f.date_field :start_date, value: Date.today %>
+     <%= f.date_field :end_date, value: (Date.today + 30.days) %>
+     <%= f.number_field :user_id, value: current_user.id %>
+     </p>
+
+     <br>
+     <!-- Button -->
+     <div class="form-group">
+       <div class="col-md-4">
+         <%= f.submit %>
+       </div>
+     </div>
+
+     </fieldset>
+    </form>
+
+<% end %>

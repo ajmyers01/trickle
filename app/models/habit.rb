@@ -20,7 +20,6 @@ class Habit < ActiveRecord::Base
 
   def create_task_for_habit
     puts "successful run of scheduler"
-
   end
 
   def longest_running_streak

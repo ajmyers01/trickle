@@ -17,6 +17,19 @@
           <div class="container-fluid">
             <div class="jumbotron">
               <h3>Did you complete Today's Habits?</h3>
+              <% if current_user.incomplete_daily_habit.present? %>
+                <% current_user.incomplete_daily_habit.each do |habit| %>
+                  <div class="js-habit-<%= habit.id %>">
+                    <tr>
+                      <td> <div class="btn btn-primary js-complete-task" id="<%= habit.id %>"> Complete </div> </td>
+                      <td> <%= habit.name %> </td>
+                    </tr>
+                  </div>
+                <% end %>
+              <% else%>
+                <p> Good Job! You've completed all your habits for the day!  </p>
+                <p> See you tomorrow.</p>
+              <% end %>
             </div>
           </div>
         </section>

@@ -31,6 +31,15 @@ class HabitsController < ApplicationController
     redirect_to root_path
   end
 
+  def complete_daily_habit
+    @habit = Habit.find_by(id: params[:completed_habit_id])
+    @task = @habit.task_for_today
+    @task.update_attributes(completed: true)
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
+
   private
 
   def habit_params

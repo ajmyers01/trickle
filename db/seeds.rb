@@ -22,3 +22,15 @@ Task.create(
   :habit_id => admin_habit.id,
   :completed => false,
   :task_date => Date.today)
+
+second_admin_habit = Habit.create(
+                :name => "ride my bike",
+                :description => "with no handle bars",
+                :start_date => Date.today,
+                :end_date => Date.today + 30.days,
+                :user_id => admin_user.id)
+
+Task.create(
+  :habit_id => second_admin_habit.id,
+  :completed => false,
+  :task_date => Date.today)

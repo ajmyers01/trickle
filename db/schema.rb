@@ -14,37 +14,37 @@
 ActiveRecord::Schema.define(version: 20151013120752) do
 
   create_table "habits", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "icons", force: :cascade do |t|
-    t.string   "name"
-    t.string   "icon_path"
-    t.integer  "habit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.string   "icon_path",  limit: 255
+    t.integer  "habit_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer  "habit_id"
-    t.boolean  "completed"
+    t.integer  "habit_id",   limit: 4
+    t.boolean  "completed",  limit: 1
     t.date     "task_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

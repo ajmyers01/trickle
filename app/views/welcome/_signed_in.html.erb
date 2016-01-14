@@ -10,15 +10,6 @@
         <section class="jumbotron text-center">
           <div class="container-fluid">
             <div class="jumbotron">
-              <h1> Welcome <%= current_user.name %>! </h1>
-            </div>
-          </div>
-        </section>
-
-        <br>
-        <section class="jumbotron text-center">
-          <div class="container-fluid">
-            <div class="jumbotron">
               <h3>Did you complete Today's Habits?</h3>
               <% if current_user.incomplete_daily_habit.present? %>
                 <% current_user.incomplete_daily_habit.each do |habit| %>

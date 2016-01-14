@@ -14,20 +14,13 @@
      </div>
    <% end %>
 
-   <form class="form-horizontal">
-     <fieldset>
-
-     <!-- Form Name -->
-     <legend>New Habit</legend>
-
      <!-- Text input-->
      <div class="form-group">
-       <div class="col-md-4">
+       <div class="col-md-2">
          <%= f.text_field :name,  :class =>"form-control input-md", :placeholder => "Habit Name" %>
        </div>
      </div>
 
-     <br>
      <!-- Text input-->
      <div class="form-group">
        <div class="col-md-4">
@@ -41,15 +34,11 @@
      <%= f.number_field :user_id, value: current_user.id %>
      </p>
 
-     <br>
      <!-- Button -->
      <div class="form-group">
-       <div class="col-md-4">
+       <div id="create-habit-btn", class="col-md-2">
          <%= f.submit %>
        </div>
      </div>
-
-     </fieldset>
-    </form>
 
 <% end %>

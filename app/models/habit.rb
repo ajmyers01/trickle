@@ -14,6 +14,22 @@ class Habit < ActiveRecord::Base
     tasks.where(completed: true).count
   end
 
+  def incomplete_days
+    tasks.where("completed = ? AND task_date <= ?", false, Date.today).count
+  end
+
+  def total_days_in
+    completed_days + incomplete_days
+  end
+
+  def completion_average
+    ((completed_days.to_f / total_days_in.to_f) * 100).round
+  end
+
+  def days_remaining
+    30 - completed_days - incomplete_days
+  end
+
   def task_for_today
     tasks.where(completed: false, task_date: Date.today).first
   end

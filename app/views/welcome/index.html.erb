@@ -61,17 +61,6 @@
           </div>
         </section>
 
-        <section class="jumbotron text-center">
-          <div class="container-fluid">
-            <div class="jumbotron">
-              <h3>Habits being worked on: </h3>
-              <% current_user.active_habits.each do |habit| %>
-                <p> <%= habit.name  %><p>
-              <% end %>
-            </div>
-          </div>
-        </section>
-
         <section class="jumbotron">
           <div class="container-fluid">
             <div class="jumbotron ">
@@ -91,7 +80,7 @@
                       <td> <%= habit.description %> </td>
                       <td> <%= habit.start_date %> </td>
                       <td> <%= habit.end_date %> </td>
-                      <td> <%= link_to "Destroy", habit_path(habit.id), method: :delete %> </td>
+                      <td> <%= link_to "Delete", habit_path(habit.id), method: :delete %> </td>
                     </tr>
                   <% end %>
                 </table>

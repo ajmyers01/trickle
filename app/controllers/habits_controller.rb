@@ -18,6 +18,11 @@ class HabitsController < ApplicationController
     @habit = Habit.new(habit_params)
 
     if @habit.save
+      Task.create(
+        habit_id: @habit.id,
+        completed: false,
+        task_date: Date.today)
+
       redirect_to root_path
     else
       render 'new'

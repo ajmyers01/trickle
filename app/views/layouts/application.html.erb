@@ -25,9 +25,19 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li><a href="/habits/new" class="navbar-brand" role="button">Create a new Habit!</a></li>
-            <li><%= link_to("Signed in as #{current_user.name}", user_path(current_user), class: "navbar-brand") %></li>
-            <li><%= link_to "Logout", '/logout', class: "navbar-brand" %></li>
+            <div class="dropdown">
+              <div class="navbar-brand" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <%= current_user.name %>
+                <span class="caret"></span>
+              </div>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="/habits/new">Create a new Habit!</a></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to("Edit Profile", user_path(current_user)) %></li>
+                <li><%= link_to "Logout", '/logout' %></li>
+              </ul>
+            </div>
+
 
           <% else %>
             <li><%= link_to "Login", logout_path, class: "navbar-brand" %></li>

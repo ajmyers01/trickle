@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :habits
 
   def active_habits
-    habits.where("start_date <= ? AND end_date >= ?", Date.today, Date.today)
+    habits.where(active: true)
   end
 
   def incomplete_daily_habit

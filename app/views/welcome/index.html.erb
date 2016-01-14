@@ -49,34 +49,24 @@
             <div class="jumbotron">
               <h3>Habits being worked on: </h3>
               <% current_user.active_habits.each do |habit| %>
-                <p> <%= habit.name  %> <%= habit.task_for_today.try(:id)  %>
-                <%= habit.task_for_today.try(:completed)  %><p>
+                <p> <%= habit.name  %><p>
               <% end %>
-
             </div>
           </div>
         </section>
 
-        <section class="jumbotron text-center">
+        <section class="jumbotron">
           <div class="container-fluid">
-            <div class="jumbotron">
-              <h3>Calendar </h3>
-            </div>
-          </div>
-        </section>
-
-        <section class="jumbotron text-center">
-          <div class="container-fluid">
-            <div class="jumbotron text-center">
+            <div class="jumbotron ">
               <h2> <%= current_user.name %>'s Habits </h2>
               <% if current_user.active_habits.present? %>
-                <table>
+                <table class="table">
                   <tr>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Start Date </th>
-                    <th> End Date </th>
-                    <th> </th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th></th>
                   </tr>
                   <% current_user.active_habits.each do |habit| %>
                     <tr>

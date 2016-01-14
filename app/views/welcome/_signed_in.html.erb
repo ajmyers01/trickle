@@ -1,0 +1,96 @@
+<section id="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h1> Welcome back <%= current_user.name %> </h1>
+            </div>
+          </div>
+        </section>
+
+        <br>
+        <section class="jumbotron text-center">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3>Did you complete Today's Habits?</h3>
+              <% if current_user.incomplete_daily_habit.present? %>
+                <% current_user.incomplete_daily_habit.each do |habit| %>
+                  <div class="js-habit-<%= habit.id %>">
+                    <tr>
+                      <td> <div class="btn btn-primary js-complete-task" id="<%= habit.id %>"> Complete </div> </td>
+                      <td> <%= habit.name %> </td>
+                    </tr>
+                  </div>
+                <% end %>
+              <% else%>
+                <p> Good Job! You've completed all your habits for the day!  </p>
+                <p> See you tomorrow.</p>
+              <% end %>
+            </div>
+          </div>
+        </section>
+
+        <section class="jumbotron">
+          <div class="container-fluid">
+            <div class="jumbotron">
+              <h3 class="text-center">DashBoard! </h3>
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Days Completed</th>
+                    <th>Days Missed </th>
+                    <th>Days Remaining</th>
+                    <th>Trickle Percentage</th>
+                  </tr>
+                  <% current_user.active_habits.each do |habit| %>
+                    <tr>
+                      <td><%= habit.name %> </td>
+                      <td><%= habit.completed_days %> </td>
+                      <td><%= habit.incomplete_days %> </td>
+                      <td><%= habit.days_remaining %> </td>
+                      <td><%= habit.completion_average %>% </td>
+                    </tr>
+                  <% end %>
+                </table>
+
+            </div>
+          </div>
+        </section>
+
+        <section class="jumbotron">
+          <div class="container-fluid">
+            <div class="jumbotron ">
+              <h2> <%= current_user.name %>'s Habits </h2>
+              <% if current_user.active_habits.present? %>
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th></th>
+                  </tr>
+                  <% current_user.active_habits.each do |habit| %>
+                    <tr>
+                      <td> <%= habit.name %> </td>
+                      <td> <%= habit.description %> </td>
+                      <td> <%= habit.start_date %> </td>
+                      <td> <%= habit.end_date %> </td>
+                      <td> <%= link_to "Delete", habit_path(habit.id), method: :delete %> </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                <p> No habits present! </p>
+                <p><a href="/habits/new" class="btn btn-primary">Create a new Habit Now!</a></li>
+              <% end %>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+

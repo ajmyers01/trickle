@@ -34,12 +34,29 @@
           </div>
         </section>
 
-        <section class="jumbotron text-center">
+        <section class="jumbotron">
           <div class="container-fluid">
             <div class="jumbotron">
-              <h3>DashBoard! </h3>
-              <p>Completed days <%= current_user.try(:habits).try(:first).try(:completed_days) %> / 30</p>
-              <p> Longest running streak: <%= current_user.try(:habits).try(:first).try(:longest_running_streak) %></p>
+              <h3 class="text-center">DashBoard! </h3>
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Days Completed</th>
+                    <th>Days Missed </th>
+                    <th>Days Remaining</th>
+                    <th>Trickle Percentage</th>
+                  </tr>
+                  <% current_user.active_habits.each do |habit| %>
+                    <tr>
+                      <td><%= habit.name %> </td>
+                      <td><%= habit.completed_days %> </td>
+                      <td><%= habit.incomplete_days %> </td>
+                      <td><%= habit.days_remaining %> </td>
+                      <td><%= habit.completion_average %>% </td>
+                    </tr>
+                  <% end %>
+                </table>
+
             </div>
           </div>
         </section>

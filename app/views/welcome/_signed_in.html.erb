@@ -13,7 +13,7 @@
               <h3>Did you complete Today's Habits?</h3>
               <% if current_user.incomplete_daily_habit.present? %>
                 <% current_user.incomplete_daily_habit.each do |habit| %>
-                  <div class="col-md-4">
+                  <div class="col-md-4 col-xs-4" style="padding-top: 20px;">
                     <div class="js-habit-<%= habit.id %>">
                       <i class="fa fa-<%= habit.icon_path %> fa-3x"></i><br />
                       <%= habit.name %> <br />
@@ -40,6 +40,7 @@
                     <th>Days Missed </th>
                     <th>Days Remaining</th>
                     <th>Trickle Percentage</th>
+                    <th></th>
                   </tr>
                   <% current_user.active_habits.each do |habit| %>
                     <tr>
@@ -48,41 +49,14 @@
                       <td><%= habit.incomplete_days %> </td>
                       <td><%= habit.days_remaining %> </td>
                       <td><%= habit.completion_average %>% </td>
+                      <td> <%= link_to habit_path(habit.id), method: :delete do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                      </td>
                     </tr>
                   <% end %>
                 </table>
 
-            </div>
-          </div>
-        </section>
-
-        <section class="jumbotron">
-          <div class="container-fluid">
-            <div class="jumbotron ">
-              <h2> <%= current_user.name %>'s Habits </h2>
-              <% if current_user.active_habits.present? %>
-                <table class="table">
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th></th>
-                  </tr>
-                  <% current_user.active_habits.each do |habit| %>
-                    <tr>
-                      <td> <%= habit.name %> </td>
-                      <td> <%= habit.description %> </td>
-                      <td> <%= habit.start_date %> </td>
-                      <td> <%= habit.end_date %> </td>
-                      <td> <%= link_to "Delete", habit_path(habit.id), method: :delete %> </td>
-                    </tr>
-                  <% end %>
-                </table>
-              <% else %>
-                <p> No habits present! </p>
-                <p><a href="/habits/new" class="btn btn-primary">Create a new Habit Now!</a></li>
-              <% end %>
             </div>
           </div>
         </section>

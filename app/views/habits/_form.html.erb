@@ -22,9 +22,9 @@
      </div>
 
      <!-- Text input-->
-     <div class="form-group">
-       <div class="col-md-4">
-         <%= f.text_field :description,  :class =>"form-control input-md", :placeholder => "Description" %>
+     <div class="form-group", style="padding-top: 5px;">
+       <div class="col-md-2">
+         Type:<%= f.select :habit_type, options_for_select([["Mind", 1], ["Body", 2 ], ["Soul", 3]], @habit.habit_type), class: "form-control input-md" %>
        </div>
      </div>
 
@@ -36,7 +36,7 @@
 
      <!-- Button -->
      <div class="form-group">
-       <div id="create-habit-btn", class="col-md-2">
+       <div id="create-habit-btn", class="col-md-1", style="margin-top: -15px">
          <%= f.submit %>
        </div>
      </div>

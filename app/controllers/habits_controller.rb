@@ -24,8 +24,10 @@ class HabitsController < ApplicationController
         task_date: Date.today)
 
       redirect_to root_path
+      flash[:success] = "Habit Created!"
     else
-      render 'new'
+      flash[:error] = "Whoops something went wrong!"
+      redirect_to root_path
     end
   end
 
@@ -48,6 +50,6 @@ class HabitsController < ApplicationController
   private
 
   def habit_params
-    params.require(:habit).permit(:name, :description, :start_date, :end_date, :user_id)
+    params.require(:habit).permit(:name, :description, :habit_type, :start_date, :end_date, :user_id)
   end
 end

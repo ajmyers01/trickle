@@ -5,17 +5,17 @@ class Habit < ActiveRecord::Base
   has_one :icon
 
   validates_presence_of :name
-  validates_presence_of :description
+#  validates_presence_of :description
   validates_presence_of :start_date
   validates_presence_of :end_date
   validates_presence_of :user_id
 
   def completed_days
-    tasks.where(completed: true).count
+    tasks.where(completed: true).count || 0
   end
 
   def incomplete_days
-    tasks.where("completed = ? AND task_date <= ?", false, Date.today).count
+    tasks.where("completed = ? AND task_date < ?", false, Date.today).count || 0
   end
 
   def total_days_in
@@ -23,7 +23,7 @@ class Habit < ActiveRecord::Base
   end
 
   def completion_average
-    ((completed_days.to_f / total_days_in.to_f) * 100).round
+    ((completed_days.to_f / (total_days_in.to_f + 1) ) * 100).round
   end
 
   def days_remaining
@@ -45,6 +45,10 @@ class Habit < ActiveRecord::Base
   def longest_running_streak
     #TODO
     #figure out how to do this.
+  end
+
+  def icon_path
+    Icon.find(self.habit_type).icon_path
   end
 
   # Scheduler Methods

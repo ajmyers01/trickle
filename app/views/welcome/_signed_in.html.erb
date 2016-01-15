@@ -13,11 +13,12 @@
               <h3>Did you complete Today's Habits?</h3>
               <% if current_user.incomplete_daily_habit.present? %>
                 <% current_user.incomplete_daily_habit.each do |habit| %>
-                  <div class="js-habit-<%= habit.id %>">
-                    <tr>
-                      <td> <div class="btn btn-primary js-complete-task" id="<%= habit.id %>"> Complete </div> </td>
-                      <td> <%= habit.name %> </td>
-                    </tr>
+                  <div class="col-md-4">
+                    <div class="js-habit-<%= habit.id %>">
+                      <i class="fa fa-<%= habit.icon_path %> fa-3x"></i><br />
+                      <%= habit.name %> <br />
+                        <div class="btn btn-primary js-complete-task" id="<%= habit.id %>"> Complete </div>
+                    </div>
                   </div>
                 <% end %>
               <% else%>

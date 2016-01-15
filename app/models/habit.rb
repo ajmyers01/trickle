@@ -47,6 +47,10 @@ class Habit < ActiveRecord::Base
     #figure out how to do this.
   end
 
+  def icon_path
+    Icon.find(self.habit_type).icon_path
+  end
+
   # Scheduler Methods
   def self.create_daily_tasks
     active_habits.each do |habit|

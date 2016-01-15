@@ -16,6 +16,7 @@ admin_habit = Habit.create(
                 :description => "Crack down on these trolls",
                 :start_date => Date.today,
                 :end_date => Date.today + 30.days,
+                habit_type: Icon::MIND,
                 :user_id => admin_user.id)
 
 Task.create(
@@ -28,9 +29,25 @@ second_admin_habit = Habit.create(
                 :description => "with no handle bars",
                 :start_date => Date.today,
                 :end_date => Date.today + 30.days,
+                habit_type: Icon::BODY,
                 :user_id => admin_user.id)
 
 Task.create(
   :habit_id => second_admin_habit.id,
   :completed => false,
   :task_date => Date.today)
+
+Icon.create(
+  name: "Mind",
+  icon_path: "mortar-board"
+)
+
+Icon.create(
+  name: "Body",
+  icon_path: "bicycle"
+)
+
+Icon.create(
+  name: "Soul",
+  icon_path: "balance-scale"
+)
